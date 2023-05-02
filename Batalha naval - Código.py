@@ -10,6 +10,8 @@ def define_posicoes(linha,coluna,orientacao,tamanho):
 
     return lista
 
+
+
 def preenche_frota(frota,nome_navio,linha,coluna,orientacao,tamanho):
     
     if nome_navio in frota:
@@ -19,12 +21,15 @@ def preenche_frota(frota,nome_navio,linha,coluna,orientacao,tamanho):
     return frota
 
 
+
 def faz_jogada(tabuleiro, linha, coluna):
     if tabuleiro[linha][coluna] == 1:
         tabuleiro[linha][coluna] = 'X'
     else:
         tabuleiro[linha][coluna] = '-'
     return tabuleiro
+
+
 
 def posiciona_frota(frota):
   grid = []
@@ -35,29 +40,32 @@ def posiciona_frota(frota):
 
   for nome_navio in frota:
     for navio in frota[nome_navio]:
-      grid[0][0] = 1
+      print(frota[nome_navio][0])
+      while i < len(grid):
+         grid[frota[nome_navio][navio]] = 1
     
     return grid
-
-print(posiciona_frota({
-    "porta-aviões":[
-      [[1,5],[1,6],[1,7],[1,8]]
-    ],
-    "navio-tanque":[
-      [[6,1],[6,2],[6,3]],
-      [[4,7],[5,7],[6,7]]
-    ],
-    "contratorpedeiro":[
-      [[1,1],[2,1]],
-      [[2,3],[3,3]],
-      [[9,1],[9,2]]
-    ],
-    "submarino": [
-      [[0,3]],
-      [[4,5]],
-      [[8,9]],
-      [[8,4]]
-    ],
-}))
+  
 
 
+def posiciona_frota(frota):
+  grid = []
+  linhas = [0]*10
+  for i in linhas:
+    grid.append(([i*10])*10)
+
+  for nome_navio in frota:
+    
+    for navio in frota[nome_navio]:
+      
+      i = 0
+      while i < len(navio):
+         
+         linha = navio[i][0]
+         coluna = navio[i][1]
+
+         grid[linha][coluna] = 1
+         
+         i += 1
+
+  return grid
