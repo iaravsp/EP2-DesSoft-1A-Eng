@@ -32,12 +32,14 @@ def posiciona_frota(frota):
   for i in linhas:
     grid.append(([i*10])*10)
 
-  for nome in frota.keys():
-      for posicao in frota.values():
-        grid[posicao[0]][posicao[1]] == "0"
 
-  return grid
-frota = {
+  for nome_navio in frota:
+    for navio in frota[nome_navio]:
+      grid[0][0] = 1
+    
+    return grid
+
+print(posiciona_frota({
     "porta-aviões":[
       [[1,5],[1,6],[1,7],[1,8]]
     ],
@@ -56,8 +58,6 @@ frota = {
       [[8,9]],
       [[8,4]]
     ],
-}
+}))
 
-resultado = posiciona_frota(frota)
-print(resultado)
 
