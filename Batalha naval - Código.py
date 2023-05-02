@@ -32,18 +32,32 @@ def posiciona_frota(frota):
   for i in linhas:
     grid.append(([i*10])*10)
 
-
-  for nome in frota:
-    for l in frota[nome][0][0][0]:
-      for c in frota[nome][0][0][1]:
-        if l == l+1:
-          grid[l].append(1[c])
-
-      
-      for c2 in frota[nome][0][0][1]:
-        for l2 in frota[nome][0][0][0]:
-          if c2 == c2+1:
-            grid[c2].append(1[l2])
+  for nome in frota.keys():
+      for posicao in frota.values():
+        grid[posicao[0]][posicao[1]] == "0"
 
   return grid
+frota = {
+    "porta-aviões":[
+      [[1,5],[1,6],[1,7],[1,8]]
+    ],
+    "navio-tanque":[
+      [[6,1],[6,2],[6,3]],
+      [[4,7],[5,7],[6,7]]
+    ],
+    "contratorpedeiro":[
+      [[1,1],[2,1]],
+      [[2,3],[3,3]],
+      [[9,1],[9,2]]
+    ],
+    "submarino": [
+      [[0,3]],
+      [[4,5]],
+      [[8,9]],
+      [[8,4]]
+    ],
+}
+
+resultado = posiciona_frota(frota)
+print(resultado)
 
