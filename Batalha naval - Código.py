@@ -30,24 +30,6 @@ def faz_jogada(tabuleiro, linha, coluna):
     return tabuleiro
 
 
-
-def posiciona_frota(frota):
-  grid = []
-  linhas = [0]*10
-  for i in linhas:
-    grid.append(([i*10])*10)
-
-
-  for nome_navio in frota:
-    for navio in frota[nome_navio]:
-      print(frota[nome_navio][0])
-      while i < len(grid):
-         grid[frota[nome_navio][navio]] = 1
-    
-    return grid
-  
-
-
 def posiciona_frota(frota):
   grid = []
   linhas = [0]*10
