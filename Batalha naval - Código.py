@@ -58,17 +58,12 @@ def afundados(frota,tabuleiro):
   for nome_navio in frota:
     for navio in frota[nome_navio]:
         i = 0
-        while i <len(navio):
-            qnt_navios = 0
-            linha = navio[i][0]
-            coluna = navio[i][1]
-            for item in navio:
-              if item[i] == linha:
-                 if item[i+1] == coluna:
-                    if tabuleiro[linha][coluna] == 'X':
-                      qnt_navios += 1
-  return qnt_navios
+        qnt_navios = 0
 
-                  
-               
-               
+        linha = navio[i][0]
+        coluna = navio[i][1]
+        for item in navio:
+            if tabuleiro[linha][coluna] == 'X':
+                tabuleiro[linha][coluna] == 'X'
+        qnt_navios += 1
+  return qnt_navios
