@@ -72,3 +72,17 @@ def afundados(frota,tabuleiro):
                 qnt_navios_afundados += 1
 
     return qnt_navios_afundados
+
+def posicao_valida(dic, linha, coluna, orientacao, tamanho):
+    resultado = define_posicoes(linha, coluna, orientacao, tamanho)
+    for j in dic.items():
+        for i in resultado:
+            if i == j:
+                return False 
+    if orientacao == "horizontal":
+        if coluna + tamanho > 10:
+            return False
+    if orientacao == "vertical":
+        if linha + tamanho > 10:
+            return False
+    return True
