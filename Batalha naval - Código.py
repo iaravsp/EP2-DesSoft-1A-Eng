@@ -75,10 +75,9 @@ def afundados(frota,tabuleiro):
 
 def posicao_valida(dic, linha, coluna, orientacao, tamanho):
     resultado = define_posicoes(linha, coluna, orientacao, tamanho)
-    for j in dic.items():
-        for i in resultado:
-            if i == j:
-                return False 
+    for posicao in resultado:
+        if posicao in dic:
+            return False
     if orientacao == "horizontal":
         if coluna + tamanho > 10:
             return False
