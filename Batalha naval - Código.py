@@ -1,12 +1,14 @@
 def define_posicoes(linha,coluna,orientacao,tamanho):
     lista = []
+    x = linha
+    y = coluna
     for i in range(tamanho):
         if orientacao == "vertical":
-            lista.append([linha,coluna])
-            linha += 1
+            lista.append([x,y])
+            x += 1
         elif orientacao == "horizontal":
-            lista.append([linha,coluna])
-            coluna+=1
+            lista.append([x,y])
+            y+=1
 
     return lista
 
@@ -116,22 +118,29 @@ for nome, tamanho in embarcacoes.items():
     print("Insira as informações referentes ao navio {0} que possui tamanho {1}".format(nome,tamanho))
     linha = int(input("Digite a linha: "))
     coluna = int(input("Digite a coluna: "))
+
     if nome != 'submarino':
       orientacao = int(input("Digite a orientação (1 - vertical, 2 - horizontal): "))
+
+    if orientacao == 1:
+          orientacao = 'vertical'
+    elif orientacao == 2:
+      orientacao = 'horizontal'
       
 
-    if not posicao_valida(frota, linha, coluna, orientacao, tamanho):
+    while not posicao_valida(frota, linha, coluna, orientacao, tamanho):
       print("Esta posição não está válida!")
       print("Insira as informações referentes ao navio {0} que possui tamanho {1}".format(nome,tamanho))
       linha = int(input("Digite a linha: "))
       coluna = int(input("Digite a coluna: "))
       if nome != 'submarino':
         orientacao = int(input("Digite a orientação (1 - vertical, 2 - horizontal): "))
-    else:
-        if orientacao == 1:
+
+      if orientacao == 1:
           orientacao = 'vertical'
-        elif orientacao == 2:
-          orientacao = 'horizontal'
+      elif orientacao == 2:
+        orientacao = 'horizontal'
+    else:
         #Caso a posição seja válida, você deve utilizar a funções define_posicoes e preenche_frota 
         # para popular o dicionário com as informações da frota do jogador.
         lista = define_posicoes(linha,coluna,orientacao,tamanho)
