@@ -178,9 +178,6 @@ frota_oponente = {
         [[7, 6]]
     ]
 }
-total = 0
-for i in frota_oponente.values():
-    total+=1
 
 tabuleiro_oponente = posiciona_frota(frota_oponente)
 tabuleiro_jogador = posiciona_frota(frota)
