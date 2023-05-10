@@ -95,6 +95,16 @@ def posicao_valida(dic, linha, coluna, orientacao, tamanho):
     
     return True
 
+def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
+    texto = ''
+    texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
+    texto += '_______________________________      _______________________________\n'
+
+    for linha in range(len(tabuleiro_jogador)):
+        jogador_info = '  '.join([str(item) for item in tabuleiro_jogador[linha]])
+        oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in tabuleiro_oponente[linha]])
+        texto += f'{linha}| {jogador_info}|     {linha}| {oponente_info}|\n'
+    return texto
 
 #tamanho
 embarcacoes = {
@@ -177,46 +187,27 @@ tabuleiro_jogador = posiciona_frota(frota)
 jogando = True
 
 while jogando:
-   def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
-    texto = ''
-    texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
-    texto += '_______________________________      _______________________________\n'
-
-    for linha in range(len(tabuleiro_jogador)):
-        jogador_info = '  '.join([str(item) for item in tabuleiro_jogador[linha]])
-        oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in tabuleiro_oponente[linha]])
-        texto += f'{linha}| {jogador_info}|     {linha}| {oponente_info}|\n'
-    return texto
    print(monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente))
-
+   perguntando = True
    posicoes_informadas = []
-   linha = int(input("Jogador, qual linha deseja atacar?"))
-   while linha not in range(0, 10):
-    print("Linha inválida!")
-    linha = int(input("Jogador, qual linha deseja atacar?"))
-    
-    coluna = int(input("Jogador, qual coluna deseja atacar?"))
-    while coluna not in range(0, 10):
-       print("Coluna inválida!")
-       coluna = int(input("Jogador, qual coluna deseja atacar?"))
-
-    while linha in range(0, 10) and coluna in range(0, 10):
-        if (linha, coluna) not in posicoes_informadas:
-            posicoes_informadas.append((linha, coluna))
-        else:
-           print(f"A posição linha {linha} e coluna {coluna} já foi informada anteriormente!")
-           linha = int(input("Jogador, qual linha deseja atacar?"))
-           while linha not in range(0, 10):
+   while perguntando:
+        linha = int(input("Jogador, qual linha deseja atacar?"))
+        while linha not in range(0, 10):
             print("Linha inválida!")
             linha = int(input("Jogador, qual linha deseja atacar?"))
-                
+            
+        coluna = int(input("Jogador, qual coluna deseja atacar?"))
+        while coluna not in range(0, 10):
+            print("Coluna inválida!")
             coluna = int(input("Jogador, qual coluna deseja atacar?"))
-            while coluna not in range(0, 10):
-                print("Coluna inválida!")
-                coluna = int(input("Jogador, qual coluna deseja atacar?"))         
+            
 
+        if [linha, coluna] not in posicoes_informadas:
+            perguntando = False
+            posicoes_informadas.append((linha, coluna))
 
-   navios_afundados = afundados(frota,tabuleiro_oponente)
+   tabuleiro = faz_jogada(tabuleiro_oponente,linha,coluna)
+   navios_afundados = afundados(frota,tabuleiro)
    if afundados == len(frota_oponente.values()):
        print("Parabéns! Você derrubou todos os navios do seu oponente!")
 
