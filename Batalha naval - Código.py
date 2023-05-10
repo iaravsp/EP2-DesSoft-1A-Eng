@@ -190,24 +190,30 @@ while jogando:
    print(monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente))
 
    posicoes_informadas = []
-   linha = int(input("Jogador, qual linha deseja atacar? "))
-   coluna = int(input("Jogador, qual coluna deseja atacar? "))
-   while linha in range(0, 10) and coluna in range(0, 10):
-        if (linha, coluna) in posicoes_informadas:
-            print(f"A posição linha {linha} e coluna {coluna} já foi informada anteriormente!")
-        else:
+   linha = int(input("Jogador, qual linha deseja atacar?"))
+   while linha not in range(0, 10):
+    print("Linha inválida!")
+    linha = int(input("Jogador, qual linha deseja atacar?"))
+    
+    coluna = int(input("Jogador, qual coluna deseja atacar?"))
+    while coluna not in range(0, 10):
+       print("Coluna inválida!")
+       coluna = int(input("Jogador, qual coluna deseja atacar?"))
+
+    while linha in range(0, 10) and coluna in range(0, 10):
+        if (linha, coluna) not in posicoes_informadas:
             posicoes_informadas.append((linha, coluna))
-            for l, c in posicoes_informadas:
-                atualiza = faz_jogada(tabuleiro_oponente,l,c)
-            linha = int(input("Jogador, qual linha deseja atacar? "))
-            coluna = int(input("Jogador, qual coluna deseja atacar? "))
-
-            while linha not in range(0, 10):
-                linha = int(input("Jogador, qual linha deseja atacar? "))
-
+        else:
+           print(f"A posição linha {linha} e coluna {coluna} já foi informada anteriormente!")
+           linha = int(input("Jogador, qual linha deseja atacar?"))
+           while linha not in range(0, 10):
+            print("Linha inválida!")
+            linha = int(input("Jogador, qual linha deseja atacar?"))
+                
+            coluna = int(input("Jogador, qual coluna deseja atacar?"))
             while coluna not in range(0, 10):
                 print("Coluna inválida!")
-                coluna = int(input("Jogador, qual coluna deseja atacar? "))
+                coluna = int(input("Jogador, qual coluna deseja atacar?"))         
 
 
    navios_afundados = afundados(frota,tabuleiro_oponente)
