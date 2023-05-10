@@ -201,7 +201,6 @@ while jogando:
             
 
         if [linha, coluna] not in posicoes_informadas:
-            print(f"A posição linha {linha} e coluna {coluna} já foi informada anteriormente!")
             perguntando = False
             posicoes_informadas.append((linha, coluna))
         else:
