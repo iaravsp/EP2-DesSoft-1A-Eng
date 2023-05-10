@@ -146,7 +146,6 @@ for nome, tamanho in embarcacoes.items():
         lista = define_posicoes(linha,coluna,orientacao,tamanho)
         frota = preenche_frota(frota,nome,linha,coluna,orientacao,tamanho)
     i+=1
-print(frota)
 
 
 frota_oponente = {
