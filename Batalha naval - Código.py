@@ -94,34 +94,47 @@ def posicao_valida(dic, linha, coluna, orientacao, tamanho):
     return True
 
 
-
+#tamanho
 embarcacoes = {
     "porta-aviões": 4,
     "navio-tanque": 3,
     "contratorpedeiro": 2,
     "submarino": 1
 }
+#qde
+quantidade = {
+    "porta-aviões": 1,
+    "navio-tanque": 2,
+    "contratorpedeiro": 3,
+    "submarino": 4
+}
 frota = {}
 
 for nome, tamanho in embarcacoes.items():
-  print("Insira as informações referentes ao navio {0} que possui tamanho {1}".format(nome,tamanho))
-  linha = int(input("Digite a linha: "))
-  coluna = int(input("Digite a coluna: "))
-  if nome != 'submarino':
-    orientacao = int(input("Digite a orientação (1 - vertical, 2 - horizontal): "))
-    
-
-  if not posicao_valida(dic, linha, coluna, orientacao, tamanho):
-    print("Esta posição não está válida!")
+  i = 0
+  while i < quantidade[nome]:
     print("Insira as informações referentes ao navio {0} que possui tamanho {1}".format(nome,tamanho))
     linha = int(input("Digite a linha: "))
     coluna = int(input("Digite a coluna: "))
     if nome != 'submarino':
       orientacao = int(input("Digite a orientação (1 - vertical, 2 - horizontal): "))
-  else:
-      #Caso a posição seja válida, você deve utilizar a funções define_posicoes e preenche_frota 
-      # para popular o dicionário com as informações da frota do jogador.
-      lista = define_posicoes(linha,coluna,orientacao,tamanho)
-      frota = preenche_frota(frota,nome_navio,linha,coluna,orientacao,tamanho)
+      
 
-  print(frota)
+    if not posicao_valida(frota, linha, coluna, orientacao, tamanho):
+      print("Esta posição não está válida!")
+      print("Insira as informações referentes ao navio {0} que possui tamanho {1}".format(nome,tamanho))
+      linha = int(input("Digite a linha: "))
+      coluna = int(input("Digite a coluna: "))
+      if nome != 'submarino':
+        orientacao = int(input("Digite a orientação (1 - vertical, 2 - horizontal): "))
+    else:
+        if orientacao == 1:
+          orientacao = 'vertical'
+        elif orientacao == 2:
+          orientacao = 'horizontal'
+        #Caso a posição seja válida, você deve utilizar a funções define_posicoes e preenche_frota 
+        # para popular o dicionário com as informações da frota do jogador.
+        lista = define_posicoes(linha,coluna,orientacao,tamanho)
+        frota = preenche_frota(frota,nome,linha,coluna,orientacao,tamanho)
+    i+=1
+print(frota)
