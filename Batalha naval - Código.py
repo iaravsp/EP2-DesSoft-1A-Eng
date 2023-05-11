@@ -1,3 +1,6 @@
+
+import random
+random.seed(1)
 def define_posicoes(linha,coluna,orientacao,tamanho):
     lista = []
     x = linha
@@ -205,11 +208,9 @@ while jogando:
             posicoes_informadas.append((linha, coluna))
         else:
            print(f"A posição linha {linha} e coluna {coluna} já foi informada anteriormente!")
-
-           
-
-    tabuleiro = faz_jogada(tabuleiro_oponente,linha,coluna)
-   navios_afundados = afundados(frota_oponente,tabuleiro)
+      
+        tabuleiro = faz_jogada(tabuleiro_oponente,linha,coluna)
+        navios_afundados = afundados(frota_oponente,tabuleiro)
 
    if navios_afundados == 10:
         print("Parabéns! Você derrubou todos os navios do seu oponente!")
@@ -217,9 +218,8 @@ while jogando:
 
     #Caso o jogador não tenha afundado toda a embarcação do inimigo, implemente a jogada do oponente.
     #Sorteie uma linha e coluna utilizando a função random.randint.
-    import random 
-    linha = random.randint(0, 10) 
-    coluna = random.randint(0, 10) 
+        linha = random.randint(0, 10) 
+        coluna = random.randint(0, 10) 
 
 
     # Deve haver uma verificação para que o oponente não tente atacar uma mesma posição que ele já tenha escolhido. 
@@ -227,18 +227,18 @@ while jogando:
     # (Dica: Utilize uma lista auxiliar para armazenar as posições passadas.) 
     # Caso o programa encontre uma posição possível, deve imprimir a seguinte mensagem 
     # 'Seu oponente está atacando na linha LINHA e coluna COLUNA'.
-    if [linha, coluna] in posicoes_informadas:
-        print(f"Seu oponente está atacando na linha {linha} e coluna {coluna}")
+        if [linha, coluna] in posicoes_informadas:
+            print(f"Seu oponente está atacando na linha {linha} e coluna {coluna}")
 
 
     #Utiliza a função faz_jogada para atualizar o tabuleiro do jogador.
-    tabuleiro = faz_jogada(tabuleiro_oponente,linha,coluna)
+        tabuleiro = faz_jogada(tabuleiro_oponente,linha,coluna)
 
 
     # Utiliza a função afundados para verificar se o oponente derrubou toda a embarcação do jogador. 
     # Se o oponente derrubar toda a embarcação do jogador, o programa deve imprimir a seguinte mensagem 'Xi!
     #  O oponente derrubou toda a sua frota =(' e o jogo deve finalizar.
-    navios_afundados = afundados(frota_oponente,tabuleiro)
-    if navios_afundados == "quantidade de navios existentes":
-        print("Xi! O oponente derrubou toda a sua frota =(")
-        jogando = False
+        navios_afundados = afundados(frota_oponente,tabuleiro)
+        if navios_afundados == "quantidade de navios existentes":
+            print("Xi! O oponente derrubou toda a sua frota =(")
+            jogando = False
